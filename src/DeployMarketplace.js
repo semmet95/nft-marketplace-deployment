@@ -1,5 +1,12 @@
 import React from "react";
 
-export default function DeployMarketplace() {
-  return <h1>Deploy Marketplace</h1>;
+class DeployMarketplace extends React.Component {
+
+    render() {
+        return (
+            <h1>Deploy Marketplace</h1>
+        );
+    }
 }
+
+export default DeployMarketplace;
