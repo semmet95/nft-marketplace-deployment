@@ -39,6 +39,8 @@
     ]
   },
   "devDependencies": {
-    "hardhat": "^2.8.3"
+    "hardhat": "^2.8.3",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
   }
 }

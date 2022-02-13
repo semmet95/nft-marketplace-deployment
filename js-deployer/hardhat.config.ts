@@ -6,7 +6,7 @@
 
  import { readFileSync } from 'fs';
  
- const secrets = JSON.parse(readFileSync("secrets.json"));
+ const secrets = JSON.parse(readFileSync("secrets.json").toString());
  const infuraId = secrets["infura_id"];
  const accounts_keys = secrets["accounts"];
  
