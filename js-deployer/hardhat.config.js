@@ -1,4 +1,7 @@
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
-export const solidity = "0.8.3";
+ module.exports = {
+    solidity: "0.8.3",
+  };
+  
