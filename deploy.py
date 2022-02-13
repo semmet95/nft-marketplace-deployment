@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-js_deployer_path = os.path.join(os.getcwd(), 'js_deployer')
+js_deployer_path = os.path.join(os.getcwd(), 'js-deployer')
 
 cd_dir = 'cd ' + js_deployer_path
 hardhat_compile = 'npx hardhat compile'
