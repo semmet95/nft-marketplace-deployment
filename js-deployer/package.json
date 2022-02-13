@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "hardhat": "^2.8.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.1.2",
@@ -39,7 +40,6 @@
     ]
   },
   "devDependencies": {
-    "hardhat": "^2.8.3",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
   }
