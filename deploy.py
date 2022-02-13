@@ -3,6 +3,8 @@ import subprocess
 
 from flask import Flask, request
 
+app = Flask(__name__)
+
 @app.route('/deploymarketplace', methods=['GET'])
 def deploy_marketplace():
 
@@ -19,4 +21,8 @@ def deploy_marketplace():
     console_logs = subprocess.check_output(deploy_cmd, shell=True).decode('utf-8')
     console_logs = list(filter(None, console_logs.split('\n')))
 
-    print(console_logs[-1])
+    nft_marketplace_address = console_logs[-1].split('=')[-1]
+
+    return nft_marketplace_address
+
+app.run()
