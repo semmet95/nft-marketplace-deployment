@@ -1,4 +1,4 @@
-import { ethers } from "hardhat";
+const { ethers } = require("hardhat");
 
 async function main() {
   const listingPrice = parseInt(process.env.REACT_APP_LISTING_PRICE);
@@ -7,7 +7,7 @@ async function main() {
   const nftMarket = await NFTMarketContract.deploy(listingPrice);
   await nftMarket.deployed();
   
-  console.log("nftMarket.address=", nftMarket.address);
+  console.log("nftMarket.address="+nftMarket.address);
 }
 
 main()
