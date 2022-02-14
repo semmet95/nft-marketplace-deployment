@@ -25,7 +25,7 @@ def deploy_marketplace():
 
     deployment_network = request.args.get('network')
     listing_price = request.args.get('listing-price')
-    contract_name = request.args.get('contract-name', default='NFTMarketN')
+    contract_name = request.args.get('contract-name', default='NFTMarket')
 
     cd_dir = 'cd ' + os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer')
     hardhat_compile = 'npx hardhat compile'
