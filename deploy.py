@@ -1,18 +1,10 @@
+import logging
 import os
 import subprocess
 
 from flask import Flask, request
 
 app = Flask(__name__)
-
-@app.before_first_request
-def setup_env():
-
-    cd_dir = 'cd ' + os.path.join(os.getcwd(), 'js-deployer')
-    npm_install = 'npm install'
-
-    setup_cmd = ' && '.join((cd_dir, npm_install))
-    subprocess.check_call(setup_cmd, shell=True)
 
 @app.route('/deploymarketplace', methods=['GET'])
 def deploy_marketplace():
@@ -27,6 +19,7 @@ def deploy_marketplace():
     os.environ["REACT_APP_LISTING_PRICE"] = listing_price
     deploy_cmd = ' && '.join((cd_dir, hardhat_compile, hardhat_run))
 
+    logging.info('running hardhat command to commpile and deploy contracts')
     console_logs = subprocess.check_output(deploy_cmd, shell=True).decode('utf-8')
     console_logs = list(filter(None, console_logs.split('\n')))
 
