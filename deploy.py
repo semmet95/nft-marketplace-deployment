@@ -27,4 +27,4 @@ def deploy_marketplace():
 
     return nft_marketplace_address
 
-app.run()
+app.run(port=80)
