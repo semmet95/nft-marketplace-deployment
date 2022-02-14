@@ -5,6 +5,12 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+@app.before_first_request
+def setup_env():
+
+    cd_dir = 'cd ' + os.path.join(os.getcwd(), 'js-deployer')
+    npm_install = 'npm install'
+
 @app.route('/deploymarketplace', methods=['GET'])
 def deploy_marketplace():
 
@@ -25,4 +31,4 @@ def deploy_marketplace():
 
     return nft_marketplace_address
 
-app.run(port=80)
+app.run()
