@@ -26,7 +26,7 @@ def deploy_marketplace():
 
     cd_dir = 'cd ' + os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer')
     hardhat_compile = 'npx hardhat compile'
-    hardhat_run = 'npx hardhat run ./scripts/deploy.js --network ' + deployment_network
+    hardhat_run = 'npx hardhat run ./scripts/deploy-marketplace.js --network ' + deployment_network
 
     os.environ["REACT_APP_LISTING_PRICE"] = listing_price
     deploy_cmd = ' && '.join((cd_dir, hardhat_compile, hardhat_run))
