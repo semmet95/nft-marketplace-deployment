@@ -32,6 +32,7 @@ def deploy_marketplace():
     hardhat_run = 'npx hardhat run ./scripts/deploy-marketplace.js --network ' + deployment_network
 
     os.environ["REACT_APP_LISTING_PRICE"] = listing_price
+    os.environ["REACT_APP_CONTRACT_NAME"] = contract_name
     deploy_cmd = ' && '.join((cd_dir, hardhat_compile, hardhat_run))
 
     print('starting contract deployment')
