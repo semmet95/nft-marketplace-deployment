@@ -12,7 +12,7 @@ def deploy_marketplace():
     deployment_network = request.args.get('network')
     listing_price = request.args.get('listing-price')
 
-    cd_dir = 'cd ' + os.path.join(os.getcwd(), 'js-deployer')
+    cd_dir = 'cd ' + os.path.join(os.path.dirname(os.getcwd()), 'js-deployer')
     hardhat_compile = 'npx hardhat compile'
     hardhat_run = 'npx hardhat run ./scripts/deploy.js --network ' + deployment_network
 
