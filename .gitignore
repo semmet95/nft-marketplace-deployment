@@ -9,5 +9,8 @@
 # dependencies
 **/node_modules
 
+# secrets
+**/*secret*
+
 # vs-cde
 **/.vscode
