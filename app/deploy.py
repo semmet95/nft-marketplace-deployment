@@ -26,5 +26,3 @@ def deploy_marketplace():
     nft_marketplace_address = console_logs[-1].split('=')[-1]
 
     return nft_marketplace_address
-
-app.run()
