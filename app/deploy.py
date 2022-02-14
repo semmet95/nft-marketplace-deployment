@@ -49,7 +49,7 @@ def deploy_marketplace():
     return nft_marketplace_address
 
 @app.route('/deploynft', methods=['GET'])
-def deploy_marketplace():
+def deploy_nft():
     global contract_deployed, console_logs
 
     contract_deployed = False

@@ -1,1 +1,1 @@
-web: gunicorn -w 2 --threads 3 wsgi:app
+web: gunicorn -w 2 --threads 5 wsgi:app
