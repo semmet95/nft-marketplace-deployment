@@ -11,6 +11,9 @@ def setup_env():
     cd_dir = 'cd ' + os.path.join(os.getcwd(), 'js-deployer')
     npm_install = 'npm install'
 
+    setup_cmd = ' && '.join((cd_dir, npm_install))
+    subprocess.check_call(setup_cmd, shell=True)
+
 @app.route('/deploymarketplace', methods=['GET'])
 def deploy_marketplace():
 
