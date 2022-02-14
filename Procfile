@@ -1,1 +1,1 @@
-web: gunicorn predictor:app
+web: gunicorn deploy:app
