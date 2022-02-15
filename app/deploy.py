@@ -35,10 +35,8 @@ def deploy_marketplace():
     os.environ["REACT_APP_CONTRACT_NAME"] = contract_name
     deploy_cmd = ' && '.join((cd_dir, hardhat_compile, hardhat_run))
 
-    print('deploying contract', contract_name)
+    print('deploying contract:', contract_name)
     threading.Thread(target=hardhat_cmd, args=(deploy_cmd,)).start()
-
-    print('active thread count:', threading.active_count())
 
     while not contract_deployed:
         print('waiting for the contract to be deployed...')
