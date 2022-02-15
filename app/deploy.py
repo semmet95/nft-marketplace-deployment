@@ -54,6 +54,8 @@ def deploy_nft():
 
     os.environ["REACT_APP_CONTRACT_NAME"] = contract_name
     os.environ["REACT_APP_MARKET_ADDRESS"] = market_address
+    os.environ["REACT_APP_NFT_NAME"] = nft_name
+    os.environ["REACT_APP_NFT_SYMBOL"] = nft_symbol
     deploy_cmd = ' && '.join((cd_dir, hardhat_compile, hardhat_run))
 
     print('deploying contract:', contract_name)
