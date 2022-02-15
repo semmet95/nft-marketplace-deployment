@@ -36,7 +36,7 @@ def deploy_marketplace():
     deploy_cmd = ' && '.join((cd_dir, hardhat_compile, hardhat_run))
 
     print('deploying contract', contract_name)
-    threading.Thread(target=hardhat_cmd(deploy_cmd)).start()
+    threading.Thread(target=hardhat_cmd, args=(deploy_cmd,)).start()
 
     print('active thread count:', threading.active_count())
 
