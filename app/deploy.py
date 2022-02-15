@@ -40,7 +40,7 @@ def deploy_marketplace():
 
     while not contract_deployed:
         print('waiting for the contract to be deployed...')
-        time.sleep(1)
+        time.sleep(2)
 
     console_logs = list(filter(None, console_logs.split('\n')))
 
