@@ -38,6 +38,8 @@ def deploy_marketplace():
     print('deploying contract', contract_name)
     threading.Thread(target=hardhat_cmd(deploy_cmd)).start()
 
+    print('active thread count:', threading.active_count())
+
     while not contract_deployed:
         print('waiting for the contract to be deployed...')
         time.sleep(5)
