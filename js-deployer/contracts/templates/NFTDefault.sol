@@ -10,7 +10,7 @@ contract NFTDefault is ERC721URIStorage {
     Counters.Counter private _tokenIds;
     address contractAddress;
 
-    constructor(address marketplaceAddress) ERC721("MASKONDI", "MASKT") {
+    constructor(address marketplaceAddress, string memory name, string memory symbol) ERC721(name, symbol) {
         contractAddress = marketplaceAddress;
     }
 
