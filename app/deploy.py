@@ -54,7 +54,7 @@ def deploy_nft():
 
     contract_deployed = False
     deployment_network = request.args.get('network')
-    contract_name = request.args.get('contract-name', default='NFT')
+    contract_name = request.args.get('contract-name', default='NFTDefault')
     market_address = request.args.get('market-address')
 
     cd_dir = 'cd ' + os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer')
