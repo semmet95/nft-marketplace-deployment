@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.3;
 
-import "../../modules/libs/Counters.sol";
+import "../modules/libs/Counters.sol";
 
-import "../../modules/ReentrancyGuard.sol";
-import "../../modules/IERC721.sol";
+import "../modules/ReentrancyGuard.sol";
+import "../modules/IERC721.sol";
 
-contract NFTMarket is ReentrancyGuard {
+contract NFTMarketDefault is ReentrancyGuard {
   using Counters for Counters.Counter;
   Counters.Counter private _itemIds;
   Counters.Counter private _itemsSold;
