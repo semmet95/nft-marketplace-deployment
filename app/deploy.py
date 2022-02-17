@@ -21,17 +21,10 @@ def compile_contracts():
     cd_dir = 'cd ' + os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer')
     hardhat_compile = 'npx hardhat compile'
 
-    print('deleting artifacts')
-    print(subprocess.check_output('rm -rf /app/js-deployer/artifacts', shell=True).decode('utf-8'))
-
     compile_cmd = ' && '.join((cd_dir, hardhat_compile))
 
     print('compiling contracts...')
     hardhat_cmd(compile_cmd)
-
-    print('listing files')
-    print(subprocess.check_output('ls -la /app/js-deployer/artifacts/contracts', shell=True).decode('utf-8'))
-    #print(json.loads(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer/artifacts/contracts/NFTDefault.sol/NFTDefault.json'), 'r')))
 
     console_logs = list(filter(None, console_logs.split('\n')))
     return console_logs[-1]
@@ -89,3 +82,32 @@ def deploy_nft():
     nft_address = console_logs[-1].split('=')[-1]
 
     return nft_address
+
+@app.route('/getcompiledcontract', methods=['GET'])
+def get_compiled_contract():
+
+    group_name = request.args.get('group-name', default='templates')
+    contract_name = request.args.get('contract-name').split('.')[0]
+
+    contract_dir_name = contract_name + '.sol'
+    compiled_contract_name = contract_name + '.json'
+
+    compiled_contract_path = os.path.join(
+        os.path.dirname(os.path.dirname(__file__)),
+        'js-deployer/artifacts/contracts',
+        group_name,
+        contract_dir_name,
+        compiled_contract_name
+    )
+
+    print(compiled_contract_path)
+
+    if os.path.exists(compiled_contract_path):
+        return json.load(
+            open(
+                compiled_contract_path,
+                'r'
+            )
+        )
+    else:
+        return 'Compiled contract not found. Please make sure the contract was compiled (the name is case-sensitive)'
