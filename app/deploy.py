@@ -1,3 +1,4 @@
+import json
 import os
 import subprocess
 import time
@@ -8,10 +9,25 @@ app = Flask(__name__)
 
 console_logs = None
 
-def hardhat_cmd(deploy_cmd):
+def hardhat_cmd(npx_cmd):
     global console_logs
 
-    console_logs = subprocess.check_output(deploy_cmd, shell=True).decode('utf-8')
+    console_logs = subprocess.check_output(npx_cmd, shell=True).decode('utf-8')
+
+@app.route('/compilecontracts', methods=['GET'])
+def compile_contracts():
+    global console_logs
+
+    cd_dir = 'cd ' + os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer')
+    hardhat_compile = 'npx hardhat compile'
+
+    compile_cmd = ' && '.join((cd_dir, hardhat_compile))
+
+    print('compiling contracts...')
+    hardhat_cmd(compile_cmd)
+
+    console_logs = list(filter(None, console_logs.split('\n')))
+    return console_logs[-1]
 
 @app.route('/deploymarketplace', methods=['GET'])
 def deploy_marketplace():
@@ -66,3 +82,32 @@ def deploy_nft():
     nft_address = console_logs[-1].split('=')[-1]
 
     return nft_address
+
+@app.route('/getcompiledcontract', methods=['GET'])
+def get_compiled_contract():
+
+    group_name = request.args.get('group-name', default='templates')
+    contract_name = request.args.get('contract-name').split('.')[0]
+
+    contract_dir_name = contract_name + '.sol'
+    compiled_contract_name = contract_name + '.json'
+
+    compiled_contract_path = os.path.join(
+        os.path.dirname(os.path.dirname(__file__)),
+        'js-deployer/artifacts/contracts',
+        group_name,
+        contract_dir_name,
+        compiled_contract_name
+    )
+
+    print(compiled_contract_path)
+
+    if os.path.exists(compiled_contract_path):
+        return json.load(
+            open(
+                compiled_contract_path,
+                'r'
+            )
+        )
+    else:
+        return 'Compiled contract not found. Please make sure the contract was compiled (the name is case-sensitive)'
