@@ -13,6 +13,20 @@ def hardhat_cmd(deploy_cmd):
 
     console_logs = subprocess.check_output(deploy_cmd, shell=True).decode('utf-8')
 
+@app.route('/compilecontracts', methods=['GET'])
+def compile_contracts():
+    global console_logs
+
+    cd_dir = 'cd ' + os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer')
+    hardhat_compile = 'npx hardhat compile'
+
+    compile_cmd = ' && '.join((cd_dir, hardhat_compile))
+
+    print('compiling contracts...')
+    hardhat_cmd(compile_cmd)
+
+    return console_logs
+
 @app.route('/deploymarketplace', methods=['GET'])
 def deploy_marketplace():
     global console_logs
