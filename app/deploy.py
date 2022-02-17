@@ -29,8 +29,9 @@ def compile_contracts():
     #print('reading the json')
     #print(json.loads(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer/artifacts/contracts/NFTDefault.sol/NFTDefault.json'), 'r')))
 
-    return console_logs.split('\n')[-1]
-
+    console_logs = list(filter(None, console_logs.split('\n')))
+    return console_logs[-1]
+    
 @app.route('/deploymarketplace', methods=['GET'])
 def deploy_marketplace():
     global console_logs
