@@ -21,6 +21,9 @@ def compile_contracts():
     cd_dir = 'cd ' + os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer')
     hardhat_compile = 'npx hardhat compile'
 
+    print('deleting artifacts')
+    print(subprocess.check_output('rm -rf /app/js-deployer/artifacts', shell=True).decode('utf-8'))
+
     compile_cmd = ' && '.join((cd_dir, hardhat_compile))
 
     print('compiling contracts...')
