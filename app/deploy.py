@@ -1,3 +1,4 @@
+import json
 import os
 import subprocess
 import time
@@ -8,10 +9,10 @@ app = Flask(__name__)
 
 console_logs = None
 
-def hardhat_cmd(deploy_cmd):
+def hardhat_cmd(npx_cmd):
     global console_logs
 
-    console_logs = subprocess.check_output(deploy_cmd, shell=True).decode('utf-8')
+    console_logs = subprocess.check_output(npx_cmd, shell=True).decode('utf-8')
 
 @app.route('/compilecontracts', methods=['GET'])
 def compile_contracts():
@@ -25,7 +26,10 @@ def compile_contracts():
     print('compiling contracts...')
     hardhat_cmd(compile_cmd)
 
-    return console_logs
+    print('reading the json')
+    print(json.loads(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer/artifact/contracts/NFT.sol/NFTDefault.json'), 'r')))
+
+    return console_logs.split('\n')[-1]
 
 @app.route('/deploymarketplace', methods=['GET'])
 def deploy_marketplace():
