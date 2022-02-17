@@ -26,8 +26,8 @@ def compile_contracts():
     print('compiling contracts...')
     hardhat_cmd(compile_cmd)
 
-    print('reading the json')
-    print(json.loads(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer/artifacts/contracts/NFTDefault.sol/NFTDefault.json'), 'r')))
+    #print('reading the json')
+    #print(json.loads(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer/artifacts/contracts/NFTDefault.sol/NFTDefault.json'), 'r')))
 
     return console_logs.split('\n')[-1]
 
