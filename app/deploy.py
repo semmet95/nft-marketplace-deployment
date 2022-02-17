@@ -30,7 +30,7 @@ def compile_contracts():
     hardhat_cmd(compile_cmd)
 
     print('listing files')
-    print(subprocess.check_output('ls /app/js-deployer/artifacts/contracts', shell=True).decode('utf-8'))
+    print(subprocess.check_output('ls -la /app/js-deployer/artifacts/contracts', shell=True).decode('utf-8'))
     #print(json.loads(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer/artifacts/contracts/NFTDefault.sol/NFTDefault.json'), 'r')))
 
     console_logs = list(filter(None, console_logs.split('\n')))
