@@ -26,12 +26,13 @@ def compile_contracts():
     print('compiling contracts...')
     hardhat_cmd(compile_cmd)
 
-    #print('reading the json')
+    print('listing files')
+    print(subprocess.check_output('ls /app/js-deployer', shell=True).decode('utf-8'))
     #print(json.loads(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer/artifacts/contracts/NFTDefault.sol/NFTDefault.json'), 'r')))
 
     console_logs = list(filter(None, console_logs.split('\n')))
     return console_logs[-1]
-    
+
 @app.route('/deploymarketplace', methods=['GET'])
 def deploy_marketplace():
     global console_logs
