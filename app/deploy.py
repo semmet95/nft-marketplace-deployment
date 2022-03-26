@@ -34,7 +34,8 @@ def deploy_marketplace():
     global console_logs
 
     deployment_network = request.args.get('network')
-    listing_price = request.args.get('listing-price')
+    # listing price in eth
+    listing_price = request.args.get('listing-price', default='0.0025')
     contract_name = request.args.get('contract-name', default='NFTMarketDefault')
 
     cd_dir = 'cd ' + os.path.join(os.path.dirname(os.path.dirname(__file__)), 'js-deployer')
